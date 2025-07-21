@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HURIYA IRFAN - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;700&display=swap');
+        
+        :root {
+            --primary-green: #00ff41;
+            --secondary-green: #00cc33;
+            --accent-green: #39ff14;
+            --dark-bg: #0a0a0a;
+            --card-bg: #111111;
+            --border-green: #00ff41;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #111111 100%);
+            overflow-x: hidden;
+        }
+        
+        .mono-font {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .neon-glow {
+            text-shadow: 0 0 5px var(--primary-green), 0 0 10px var(--primary-green), 0 0 15px var(--primary-green);
+        }
+        
+        .game-card {
+            background: linear-gradient(145deg, #111111, #1a1a1a);
+            border: 1px solid var(--primary-green);
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 25px rgba(0, 255, 65, 0.2);
+            border-color: var(--accent-green);
+        }
+        
+        .xp-bar {
+            background: linear-gradient(90deg, var(--secondary-green), var(--primary-green));
+            animation: xp-fill 2s ease-out;
+        }
+        
+        @keyframes xp-fill {
+            from { width: 0%; }
+        }
+        
+        .level-indicator {
+            background: linear-gradient(45deg, var(--primary-green), var(--accent-green));
+            animation: level-pulse 2s infinite alternate;
+        }
+        
+        @keyframes level-pulse {
+            from { box-shadow: 0 0 10px rgba(0, 255, 65, 0.3); }
+            to { box-shadow: 0 0 20px rgba(57, 255, 20, 0.6); }
+        }
+        
+        .level-up {
+            animation: levelUp 0.6s ease-out;
+        }
+        
+        @keyframes levelUp {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.05;
+        }
+        
+        .typing-effect {
+            overflow: hidden;
+            border-right: 2px solid var(--primary-green);
+            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: var(--primary-green); }
+        }
+        
+        .game-button {
+            background: linear-gradient(45deg, var(--secondary-green), var(--primary-green));
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--primary-green);
+        }
+        
+        .game-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .game-button:hover::before {
+            left: 100%;
+        }
+        
+        .skill-progress {
+            background: #1a1a1a;
+            border: 1px solid #333;
+        }
+        
+        .skill-fill {
+            background: linear-gradient(90deg, var(--secondary-green), var(--primary-green));
+            transition: width 2s ease-out;
+        }
+        
+        .achievement-card {
+            background: linear-gradient(145deg, #0f0f0f, #1a1a1a);
+            border: 1px solid var(--primary-green);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .achievement-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 255, 65, 0.15);
+        }
+        
+        .quest-complete {
+            animation: questComplete 0.8s ease-out;
+        }
+        
+        @keyframes questComplete {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.02); }
+            50% { transform: scale(1.01); }
+            100% { transform: scale(1); }
+        }
+        
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            background: var(--primary-green);
+            border-radius: 50%;
+            animation: status-blink 2s infinite;
+        }
+        
+        @keyframes status-blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.3; }
+        }
+        
+        .terminal-text {
+            color: var(--primary-green);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .glitch-text {
+            position: relative;
+        }
+        
+        .glitch-text::before {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            color: var(--accent-green);
+            z-index: -1;
+            animation: glitch 3s infinite;
+        }
+        
+        @keyframes glitch {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(-1px, 1px); }
+            40% { transform: translate(-1px, -1px); }
+            60% { transform: translate(1px, 1px); }
+            80% { transform: translate(1px, -1px); }
+        }
+    </style>
+</head>
+<body class="text-white">
+    <!-- Matrix Background -->
+    <canvas class="matrix-bg" id="matrix"></canvas>
+    
+    <!-- Game HUD -->
+    <div class="fixed top-4 right-4 z-50 game-card p-4 rounded-lg">
+        <div class="flex items-center space-x-4">
+            <div class="text-center">
+                <div class="terminal-text text-sm font-bold">LEVEL</div>
+                <div class="text-2xl text-white neon-glow mono-font">15</div>
+            </div>
+            <div class="flex-1">
+                <div class="text-xs terminal-text mb-1">XP: 2,750 / 3,000</div>
+                <div class="w-32 h-2 bg-gray-800 rounded-full border border-green-500">
+                    <div class="xp-bar h-2 rounded-full" style="width: 91.6%;"></div>
+                </div>
+            </div>
+            <div class="status-indicator"></div>
+        </div>
+    </div>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-40 bg-black bg-opacity-95 backdrop-blur-sm border-b border-green-500">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold terminal-text neon-glow mono-font glitch-text" data-text="HURIYA.DEV">
+                    HURIYA.DEV
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link text-gray-300 hover:text-green-400 transition-colors mono-font">
+                        [HOME]
+                    </a>
+                    <a href="#about" class="nav-link text-gray-300 hover:text-green-400 transition-colors mono-font">
+                        [ABOUT]
+                    </a>
+                    <a href="#skills" class="nav-link text-gray-300 hover:text-green-400 transition-colors mono-font">
+                        [SKILLS]
+                    </a>
+                    <a href="#experience" class="nav-link text-gray-300 hover:text-green-400 transition-colors mono-font">
+                        [EXPERIENCE]
+                    </a>
+                    <a href="#projects" class="nav-link text-gray-300 hover:text-green-400 transition-colors mono-font">
+                        [PROJECTS]
+                    </a>
+                    <a href="#contact" class="nav-link text-gray-300 hover:text-green-400 transition-colors mono-font">
+                        [CONTACT]
+                    </a>
+                </div>
+                <button id="menu-toggle" class="md:hidden terminal-text">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative pt-20">
+        <div class="text-center z-10">
+            <div class="mb-8">
+                <h1 class="text-6xl md:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-300 mono-font glitch-text" data-text="HURIYA IRFAN">
+                    HURIYA IRFAN
+                </h1>
+                <div class="typing-effect text-2xl md:text-3xl terminal-text mt-4 mx-auto max-w-fit mono-font">
+                    Computer Science Student | Developer
+                </div>
+            </div>
+            
+            <div class="game-card p-6 rounded-lg max-w-md mx-auto mb-8">
+                <div class="terminal-text mb-4 font-bold mono-font text-center">SYSTEM INFO</div>
+                <div class="space-y-2 text-left mono-font text-sm">
+                    <div class="flex justify-between">
+                        <span class="text-green-400">Location:</span>
+                        <span>Karachi, Pakistan</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-green-400">Email:</span>
+                        <span>hur1ya1rfanwork@gmail.com</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-green-400">Phone:</span>
+                        <span>+92 3101078428</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-green-400">Status:</span>
+                        <span class="flex items-center">
+                            <div class="status-indicator mr-2"></div>
+                            Available
+                        </span>
+                    </div>
+                </div>
+            </div>
+            
+            <button id="start-quest" class="game-button text-black font-bold py-3 px-8 rounded-lg text-lg mono-font">
+                INITIALIZE
+            </button>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-5xl font-bold text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-300 neon-glow mono-font">
+                PROFILE.EXE
+            </h2>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="game-card p-8 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-4 h-4 bg-green-400 rounded-full mr-3"></div>
+                        <h3 class="text-2xl font-bold terminal-text mono-font">OVERVIEW</h3>
+                    </div>
+                    <p class="text-lg leading-relaxed mb-6 text-gray-300">
+                        I'm a first-generation Computer Science undergrad at FAST-NUCES Karachi who blends creativity with logic to build things that matter. From designing school posters to exploring robotics, I've grown into full-stack development with a focus on AI and ML for social good.
+                    </p>
+                    <p class="text-lg leading-relaxed text-gray-300">
+                        I've gained practical skills in UI/UX design, social media marketing, and content creation, which I apply across personal projects, NGO campaigns, and my own brand. I believe in building from scratch, learning by doing, and contributing meaningfully.
+                    </p>
+                </div>
+                
+                <div class="space-y-6">
+                    <div class="game-card p-6 rounded-lg">
+                        <div class="flex items-center mb-4">
+                            <div class="w-4 h-4 bg-green-400 rounded-full mr-3"></div>
+                            <h3 class="text-xl font-bold terminal-text mono-font">EDUCATION</h3>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="level-indicator p-3 rounded-lg text-black">
+                                <div class="font-semibold">BS Computer Science (In Progress)</div>
+                                <div class="text-sm opacity-80">FAST-NUCES, Karachi</div>
+                            </div>
+                            <div class="bg-gray-800 p-3 rounded-lg border border-green-500">
+                                <div class="font-semibold text-green-400">HSC - A Grade</div>
+                                <div class="text-sm text-gray-300">Rank: 83rd/165 (Top 0.47%)</div>
+                            </div>
+                            <div class="bg-gray-800 p-3 rounded-lg border border-green-500">
+                                <div class="font-semibold text-green-400">SSC - A* Grade</div>
+                                <div class="text-sm text-gray-300">Rank: 4th/120</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="game-card p-6 rounded-lg">
+                        <div class="flex items-center mb-4">
+                            <div class="w-4 h-4 bg-green-400 rounded-full mr-3"></div>
+                            <h3 class="text-xl font-bold terminal-text mono-font">STATS</h3>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 mono-font">
+                            <div class="text-center">
+                                <div class="text-2xl font-bold terminal-text">1550</div>
+                                <div class="text-sm text-gray-400">SAT Score</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold terminal-text">4</div>
+                                <div class="text-sm text-gray-400">Languages</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold terminal-text">780K+</div>
+                                <div class="text-sm text-gray-400">PKR Raised</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold terminal-text">Multiple</div>
+                                <div class="text-sm text-gray-400">Awards</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Skills Section -->
+    <section id="skills" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-5xl font-bold text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-green-400 neon-glow mono-font">
+                SKILLS.JSON
+            </h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="game-card p-6 rounded-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-4 h-4 bg-green-400 rounded-full mr-3"></div>
+                        <h3 class="text-2xl font-bold terminal-text mono-font">PROGRAMMING</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2 mono-font">
+                                <span class="text-green-400">Python</span>
+                                <span class="terminal-text font-bold">85%</span>
+                            </div>
+                            <div class="skill-progress rounded-full h-2">
+                                <div class="skill-fill h-2 rounded-full" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2 mono-font">
+                                <span class="text-green-400">JavaScript</span>
+                                <span class="terminal-text font-bold">80%</span>
+                            </div>
+                            <div class="skill-progress rounded-full h-2">
+                                <div class="skill-fill h-2 rounded-full" style="width: 80%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2 mono-font">
+                                <span class="text-green-400">C++</span>
+                                <span class="terminal-text font-bold">75%</span>
+                            </div>
+                            <div class="skill-progress rounded-full h-2">
+                                <div class="skill-fill h-2 rounded-full" style="width: 75%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2 mono-font">
+                                <span class="text-green-400">HTML/CSS</span>
+                                <span class="terminal-text font-bold">90%</span>
+                            </div>
+                            <div class="skill-progress rounded-full h-2">
+                                <div class="skill-fill h-2 rounded-full" style="width: 90%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="game-card p-6 rounded-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-4 h-4 bg-green-400 rounded-full mr-3"></div>
+                        <h3 class="text-2xl font-bold terminal-text mono-font">TOOLS</h3>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="bg-gray-800 p-3 rounded-lg text-center border border-green-500">
+                            <div class="text-lg mb-1">GitHub</div>
+                            <div class="text-xs text-green-400 mono-font">Version Control</div>
+                        </div>
+                        <div class="bg-gray-800 p-3 rounded-lg text-center border border-green-500">
+                            <div class="text-lg mb-1">Figma</div>
+                            <div class="text-xs text-green-400 mono-font">UI/UX Design</div>
+                        </div>
+                        <div class="bg-gray-800 p-3 rounded-lg text-center border border-green-500">
+                            <div class="text-lg mb-1">Canva</div>
+                            <div class="text-xs text-green-400 mono-font">Graphics</div>
+                        </div>
+                        <div class="bg-gray-800 p-3 rounded-lg text-center border border-green-500">
+                            <div class="text-lg mb-1">Blender</div>
+                            <div class="text-xs text-green-400 mono-font">3D Modeling</div>
+                        </div>
+                        <div class="bg-gray-800 p-3 rounded-lg text-center border border-green-500">
+                            <div class="text-lg mb-1">React</div>
+                            <div class="text-xs text-green-400 mono-font">Frontend</div>
+                        </div>
+                        <div class="bg-gray-800 p-3 rounded-lg text-center border border-green-500">
+                            <div class="text-lg mb-1">Web Dev</div>
+                            <div class="text-xs text-green-400 mono-font">Full Stack</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="game-card p-6 rounded-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-4 h-4 bg-green-400 rounded-full mr-3"></div>
+                        <h3 class="text-2xl font-bold terminal-text mono-font">SOFT SKILLS</h3>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3 p-2 bg-gray-800 rounded border border-green-500">
+                            <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                            <span>Creative Thinking</span>
+                        </div>
+                        <div class="flex items-center space-x-3 p-2 bg-gray-800 rounded border border-green-500">
+                            <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                            <span>Problem Solving</span>
+                        </div>
+                        <div class="flex items-center space-x-3 p-2 bg-gray-800 rounded border border-green-500">
+                            <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                            <span>Leadership</span>
+                        </div>
+                        <div class="flex items-center space-x-3 p-2 bg-gray-800 rounded border border-green-500">
+                            <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                            <span>Communication</span>
+                        </div>
+                        <div class="flex items-center space-x-3 p-2 bg-gray-800 rounded border border-green-500">
+                            <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                            <span>Teamwork</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Experience Section -->
+    <section id="experience" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-5xl font-bold text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-300 neon-glow mono-font">
+                EXPERIENCE.LOG
+            </h2>
+            
+            <div class="space-y-8">
+                <div class="game-card p-6 rounded-lg quest-complete">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-green-400 rounded-lg flex items-center justify-center mr-4">
+                                <div class="w-6 h-6 bg-black rounded"></div>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold terminal-text mono-font">FOUNDER</h3>
+                                <p class="text-xl text-green-400">WhimsyLoops</p>
+                                <div class="flex items-center mt-1">
+                                    <div class="w-2 h-2 bg-green-400 rounded-full mr-2"></div>
+                                    <span class="text-sm text-gray-400 mono-font">ACTIVE</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="terminal-text font-bold mono-font">Feb 2024 – Present</p>
+                            <p class="text-gray-400 mono-font text-sm">+2,500 XP</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-900 p-4 rounded-lg border border-green-500">
+                        <h4 class="terminal-text font-bold mb-2 mono-font">RESPONSIBILITIES:</h4>
+                        <ul class="space-y-1 text-gray-300 mono-font text-sm">
+                            <li>• Started handmade crafts business</li>
+                            <li>• Built brand identity using design skills</li>
+                            <li>• Created Instagram content strategy</li>
+                            <li>• Developed social media marketing campaigns</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="game-card p-6 rounded-lg quest-complete">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-green-400 rounded-lg flex items-center justify-center mr-4">
+                                <div class="w-6 h-6 bg-black rounded"></div>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold terminal-text mono-font">DESIGNER</h3>
+                                <p class="text-xl text-green-400">Freelance</p>
+                                <div class="flex items-center mt-1">
+                                    <div class="w-2 h-2 bg-gray-500 rounded-full mr-2"></div>
+                                    <span class="text-sm text-gray-400 mono-font">COMPLETED</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="terminal-text font-bold mono-font">May 2023 – Oct 2024</p>
+                            <p class="text-gray-400 mono-font text-sm">+3,000 XP</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-900 p-4 rounded-lg border border-green-500">
+                        <h4 class="terminal-text font-bold mb-2 mono-font">RESPONSIBILITIES:</h4>
+                        <ul class="space-y-1 text-gray-300 mono-font text-sm">
+                            <li>• Led design for mental health NGO campaign</li>
+                            <li>• Created bilingual content for wellness initiatives</li>
+                            <li>• Managed design team coordination</li>
+                            <li>• Maintained brand consistency across platforms</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="game-card p-6 rounded-lg quest-complete">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-green-400 rounded-lg flex items-center justify-center mr-4">
+                                <div class="w-6 h-6 bg-black rounded"></div>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold terminal-text mono-font">VOLUNTEER</h3>
+                                <p class="text-xl text-green-400">Relief Operations</p>
+                                <div class="flex items-center mt-1">
+                                    <div class="w-2 h-2 bg-green-400 rounded-full mr-2"></div>
+                                    <span class="text-sm text-gray-400 mono-font">ACTIVE</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="terminal-text font-bold mono-font">Apr 2023 – Present</p>
+                            <p class="text-gray-400 mono-font text-sm">+5,000 XP</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-900 p-4 rounded-lg border border-green-500">
+                        <h4 class="terminal-text font-bold mb-2 mono-font">ACHIEVEMENTS:</h4>
+                        <ul class="space-y-1 text-gray-300 mono-font text-sm">
+                            <li>• Raised PKR 780,000+ for disaster relief</li>
+                            <li>• Designed campaign visuals for fundraising</li>
+                            <li>• Participated in local distribution operations</li>
+                            <li>• Developed urgency-based design strategies</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Projects Section -->
+    <section id="projects" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-5xl font-bold text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-green-400 neon-glow mono-font">
+                PROJECTS.DIR
+            </h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="achievement-card p-6 rounded-lg achievement-item">
+                    <div class="text-center mb-4">
+                        <div class="w-16 h-16 bg-green-400 rounded-lg flex items-center justify-center mx-auto mb-3">
+                            <div class="w-8 h-8 bg-black rounded"></div>
+                        </div>
+                        <div class="level-indicator px-3 py-1 rounded-full text-sm font-bold mono-font text-black">
+                            COMPLETED
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold terminal-text mb-2 text-center mono-font">STEM EXPO</h3>
+                    <p class="text-gray-300 mb-4 text-center">College STEM Expo winner with IoT innovation</p>
+                    <div class="flex justify-center space-x-2">
+                        <span class="px-3 py-1 bg-green-400 bg-opacity-20 text-green-400 rounded-full text-sm mono-font">IoT</span>
+                        <span class="px-3 py-1 bg-green-400 bg-opacity-20 text-green-400 rounded-full text-sm mono-font">Innovation</span>
+                    </div>
+                    <div class="text-center mt-3 terminal-text font-bold mono-font">+1,000 XP</div>
+                </div>
+                
+                <div class="achievement-card p-6 rounded-lg achievement-item">
+                    <div class="text-center mb-4">
+                        <div class="w-16 h-16 bg-green-400 rounded-lg flex items-center justify-center mx-auto mb-3">
+                            <div class="w-8 h-8 bg-black rounded"></div>
+                        </div>
+                        <div class="level-indicator px-3 py-1 rounded-full text-sm font-bold mono-font text-black">
+                            COMPLETED
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold terminal-text mb-2 text-center mono-font">SMART CITY</h3>
+                    <p class="text-gray-300 mb-4 text-center">Smart city prototype for science fair</p>
+                    <div class="flex justify-center space-x-2">
+                        <span class="px-3 py-1 bg-green-400 bg-opacity-20 text-green-400 rounded-full text-sm mono-font">Smart City</span>
+                        <span class="px-3 py-1 bg-green-400 bg-opacity-20 text-green-400 rounded-full text-sm mono-font">Tech</span>
+                    </div>
+                    <div class="text-center mt-3 terminal-text font-bold mono-font">+800 XP</div>
+                </div>
+                
+                <div class="achievement-card p-6 rounded-lg achievement-item">
+                    <div class="text-center mb-4">
+                        <div class="w-16 h-16 bg-green-400 rounded-lg flex items-center justify-center mx-auto mb-3">
+                            <div class="w-8 h-8 bg-black rounded"></div>
+                        </div>
+                        <div class="level-indicator px-3 py-1 rounded-full text-sm font-bold mono-font text-black">
+                            COMPLETED
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold terminal-text mb-2 text-center mono-font">ROBOTICS</h3>
+                    <p class="text-gray-300 mb-4 text-center">City-level robotics innovation recognition</p>
+                    <div class="flex justify-center space-x-2">
+                        <span class="px-3 py-1 bg-green-400 bg-opacity-20 text-green-400 rounded-full text-sm mono-font">Robotics</span>
+                        <span class="px-3 py-1 bg-green-400 bg-opacity-20 text-green-400 rounded-full text-sm mono-font">AI</span>
+                    </div>
+                    <div class="text-center mt-3 terminal-text font-bold mono-font">+750 XP</div>
+                </div>
+                
+                <div class="achievement-card p-6 rounded-lg achievement-item">
+                    <div class="text-center mb-4">
+                        <div class="w-16 h-16 bg-green-400 rounded-lg flex items-center justify-center mx-auto mb-3">
+                            <div class="w-8 h-8 bg-black rounded"></div>
+                        </div>
+                        <div class="level-indicator px-3 py-1 rounded-full text-sm font-bold mono-font text-black">
+                            COMPLETED
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold terminal-text mb-2 text-center mono-font">BRAND IDENTITY</h3>
+                    <p class="text-gray-300 mb-4 text-center">Complete brand identity for WhimsyLoops</p>
+                    <div class="flex justify-center space-x-2">
+                        <span class="px-3 py-1 bg-green-400 bg-opacity-20 text-green-400 rounded-full text-sm mono-font">Branding</span>
+                        <span class="px-3 py-1 bg-green-400 bg-opacity-20 text-green-400 rounded-full text-sm mono-font">Business</span>
+                    </div>
+                    <div class="text-center mt-3 terminal-text font-bold mono-font">+1,200 XP</div>
+                </div>
+                
+                <div class="achievement-card p-6 rounded-lg achievement-item">
+                    <div class="text-center mb-4">
+                        <div class="w-16 h-16 bg-green-400 rounded-lg flex items-center justify-center mx-auto mb-3">
+                            <div class="w-8 h-8 bg-black rounded"></div>
+                        </div>
+                        <div class="level-indicator px-3 py-1 rounded-full text-sm font-bold mono-font text-black">
+                            COMPLETED
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold terminal-text mb-2 text-center mono-font">RELIEF CAMPAIGN</h3>
+                    <p class="text-gray-300 mb-4 text-center">Raised 780K+ PKR through campaign design</p>
+                    <div class="flex justify-center space-x-2">
+                        <span class="px-3 py-1 bg-green-400 bg-opacity-20 text-green-400 rounded-full text-sm mono-font">Charity</span>
+                        <span class="px-3 py-1 bg-green-400 bg-opacity-20 text-green-400 rounded-full text-sm mono-font">Impact</span>
+                    </div>
+                    <div class="text-center mt-3 terminal-text font-bold mono-font">+2,000 XP</div>
+                </div>
+                
+                <div class="achievement-card p-6 rounded-lg achievement-item">
+                    <div class="text-center mb-4">
+                        <div class="w-16 h-16 bg-green-400 rounded-lg flex items-center justify-center mx-auto mb-3">
+                            <div class="w-8 h-8 bg-black rounded"></div>
+                        </div>
+                        <div class="level-indicator px-3 py-1 rounded-full text-sm font-bold mono-font text-black">
+                            COMPLETED
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold terminal-text mb-2 text-center mono-font">SPORTS LEADERSHIP</h3>
+                    <p class="text-gray-300 mb-4 text-center">Cricket team captain and sports club management</p>
+                    <div class="flex justify-center space-x-2">
+                        <span class="px-3 py-1 bg-green-400 bg-opacity-20 text-green-400 rounded-full text-sm mono-font">Leadership</span>
+                        <span class="px-3 py-1 bg-green-400 bg-opacity-20 text-green-400 rounded-full text-sm mono-font">Sports</span>
+                    </div>
+                    <div class="text-center mt-3 terminal-text font-bold mono-font">+900 XP</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-5xl font-bold text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-300 neon-glow mono-font">
+                CONTACT.SYS
+            </h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div class="space-y-8">
+                        <div class="game-card p-6 rounded-lg">
+                            <div class="flex items-center mb-4">
+                                <div class="w-4 h-4 bg-green-400 rounded-full mr-3"></div>
+                                <h3 class="text-2xl font-bold terminal-text mono-font">CHANNELS</h3>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="flex items-center space-x-4 p-3 bg-gray-900 rounded-lg border border-green-500">
+                                    <div class="w-8 h-8 bg-green-400 rounded-lg flex items-center justify-center">
+                                        <div class="w-4 h-4 bg-black rounded"></div>
+                                    </div>
+                                    <div>
+                                        <div class="terminal-text font-bold mono-font">EMAIL</div>
+                                        <div class="text-gray-300 mono-font text-sm">hur1ya1rfanwork@gmail.com</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-4 p-3 bg-gray-900 rounded-lg border border-green-500">
+                                    <div class="w-8 h-8 bg-green-400 rounded-lg flex items-center justify-center">
+                                        <div class="w-4 h-4 bg-black rounded"></div>
+                                    </div>
+                                    <div>
+                                        <div class="terminal-text font-bold mono-font">PHONE</div>
+                                        <div class="text-gray-300 mono-font text-sm">+92 3101078428</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-4 p-3 bg-gray-900 rounded-lg border border-green-500">
+                                    <div class="w-8 h-8 bg-green-400 rounded-lg flex items-center justify-center">
+                                        <div class="w-4 h-4 bg-black rounded"></div>
+                                    </div>
+                                    <div>
+                                        <div class="terminal-text font-bold mono-font">LINKEDIN</div>
+                                        <div class="text-gray-300 mono-font text-sm">linkedin.com/in/huriyairfan</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-4 p-3 bg-gray-900 rounded-lg border border-green-500">
+                                    <div class="w-8 h-8 bg-green-400 rounded-lg flex items-center justify-center">
+                                        <div class="w-4 h-4 bg-black rounded"></div>
+                                    </div>
+                                    <div>
+                                        <div class="terminal-text font-bold mono-font">GITHUB</div>
+                                        <div class="text-gray-300 mono-font text-sm">github.com/bedobeeeee</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-4 p-3 bg-gray-900 rounded-lg border border-green-500">
+                                    <div class="w-8 h-8 bg-green-400 rounded-lg flex items-center justify-center">
+                                        <div class="w-4 h-4 bg-black rounded"></div>
+                                    </div>
+                                    <div>
+                                        <div class="terminal-text font-bold mono-font">LOCATION</div>
+                                        <div class="text-gray-300 mono-font text-sm">Karachi, Pakistan</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="game-card p-6 rounded-lg">
+                        <div class="flex items-center mb-6">
+                            <div class="w-4 h-4 bg-green-400 rounded-full mr-3"></div>
+                            <h3 class="text-2xl font-bold terminal-text mono-font">MESSAGE</h3>
+                        </div>
+                        <form class="space-y-4" id="contact-form">
+                            <div>
+                                <label class="block terminal-text mb-2 font-bold mono-font">NAME</label>
+                                <input type="text" placeholder="Enter your name..." class="w-full bg-black border border-green-500 rounded-lg px-4 py-3 text-white focus:border-green-400 focus:outline-none transition-colors mono-font">
+                            </div>
+                            <div>
+                                <label class="block terminal-text mb-2 font-bold mono-font">EMAIL</label>
+                                <input type="email" placeholder="your.email@domain.com" class="w-full bg-black border border-green-500 rounded-lg px-4 py-3 text-white focus:border-green-400 focus:outline-none transition-colors mono-font">
+                            </div>
+                            <div>
+                                <label class="block terminal-text mb-2 font-bold mono-font">MESSAGE</label>
+                                <textarea placeholder="Type your message here..." rows="4" class="w-full bg-black border border-green-500 rounded-lg px-4 py-3 text-white focus:border-green-400 focus:outline-none transition-colors resize-none mono-font"></textarea>
+                            </div>
+                            <button type="submit" class="w-full game-button text-black font-bold py-3 rounded-lg text-lg mono-font">
+                                SEND MESSAGE
+                            </button>
+                        </form>
+                        <div class="mt-4 text-center text-gray-400 text-sm mono-font">
+                            Demo Mode - Messages are simulated
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="py-8 border-t border-green-500">
+        <div class="container mx-auto px-6 text-center">
+            <div class="text-gray-400 mb-2 mono-font">
+                © 2025 HURIYA IRFAN - Level 15 Developer
+            </div>
+            <div class="text-sm terminal-text mono-font">
+                System Status: Online | Build: v2.0.1
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Matrix background effect
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const matrix = "HURIYAIRFAN01010101FASTKARACHI";
+        const matrixArray = matrix.split("");
+        
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        
+        const drops = [];
+        for(let x = 0; x < columns; x++) {
+            drops[x] = 1;
+        }
+        
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = '#00ff41';
+            ctx.font = fontSize + 'px JetBrains Mono';
+            
+            for(let i = 0; i < drops.length; i++) {
+                const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                
+                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+        
+        setInterval(drawMatrix, 35);
+        
+        // XP and Level System
+        let currentXP = 2750;
+        let currentLevel = 15;
+        let maxXP = 3000;
+        
+        function updateXP(amount) {
+            currentXP += amount;
+            if (currentXP >= maxXP) {
+                currentLevel++;
+                currentXP = currentXP - maxXP;
+                maxXP += 200;
+                showLevelUp();
+            }
+            updateHUD();
+        }
+        
+        function updateHUD() {
+            const levelElement = document.querySelector('.text-2xl.text-white.neon-glow');
+            const xpElement = document.querySelector('.text-xs.terminal-text');
+            const xpBar = document.querySelector('.xp-bar');
+            
+            if (levelElement) levelElement.textContent = currentLevel;
+            if (xpElement) xpElement.textContent = `XP: ${currentXP} / ${maxXP}`;
+            if (xpBar) xpBar.style.width = `${(currentXP / maxXP) * 100}%`;
+        }
+        
+        function showLevelUp() {
+            const levelElement = document.querySelector('.text-2xl.text-white.neon-glow');
+            if (levelElement) {
+                levelElement.classList.add('level-up');
+                setTimeout(() => {
+                    levelElement.classList.remove('level-up');
+                }, 600);
+            }
+            
+            const notification = document.createElement('div');
+            notification.innerHTML = `
+                <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 game-card p-6 rounded-lg text-center">
+                    <div class="text-2xl font-bold terminal-text neon-glow mono-font">LEVEL UP!</div>
+                    <div class="text-lg text-gray-400 mono-font">Level ${currentLevel} Achieved</div>
+                </div>
+            `;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 2000);
+        }
+        
+        // Smooth scrolling with XP rewards
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    updateXP(10);
+                }
+            });
+        });
+        
+        // Achievement interactions
+        document.querySelectorAll('.achievement-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.classList.add('quest-complete');
+                updateXP(50);
+                
+                setTimeout(() => {
+                    item.classList.remove('quest-complete');
+                }, 800);
+            });
+        });
+        
+        // Start button
+        document.getElementById('start-quest').addEventListener('click', () => {
+            document.getElementById('about').scrollIntoView({
+                behavior: 'smooth'
+            });
+            updateXP(100);
+        });
+        
+        // Form submission
+        document.getElementById('contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const button = e.target.querySelector('button');
+            const originalText = button.textContent;
+            
+            button.textContent = 'SENDING...';
+            button.style.background = 'linear-gradient(45deg, #39ff14, #00ff41)';
+            
+            setTimeout(() => {
+                button.textContent = 'SENT!';
+                updateXP(200);
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = 'linear-gradient(45deg, #00cc33, #00ff41)';
+                    e.target.reset();
+                }, 1500);
+            }, 1000);
+        });
+        
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.classList.contains('viewed')) {
+                    entry.target.classList.add('viewed');
+                    updateXP(25);
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+        
+        // Resize canvas
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+        
+        // Initialize
+        updateHUD();
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'962ba5d043da21e8',t:'MTc1MzExMDg2NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
