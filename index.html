@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HURIYA IRFAN - Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HURIYA IRFAN - Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
         @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;700&display=swap');
         
         :root {
@@ -196,629 +196,681 @@
             80% { transform: translate(1px, -1px); }
         }
     </style>
-</head>
-<body class="text-white">
-    <!-- Matrix Background -->
-    <canvas class="matrix-bg" id="matrix"></canvas>
-    
-    <!-- Game HUD -->
-    <div class="fixed top-4 right-4 z-50 game-card p-4 rounded-lg">
-        <div class="flex items-center space-x-4">
-            <div class="text-center">
-                <div class="terminal-text text-sm font-bold">LEVEL</div>
-                <div class="text-2xl text-white neon-glow mono-font">15</div>
-            </div>
-            <div class="flex-1">
-                <div class="text-xs terminal-text mb-1">XP: 2,750 / 3,000</div>
-                <div class="w-32 h-2 bg-gray-800 rounded-full border border-green-500">
-                    <div class="xp-bar h-2 rounded-full" style="width: 91.6%;"></div>
-                </div>
-            </div>
-            <div class="status-indicator"></div>
-        </div>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="/_sdk/element_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="text-white"><!-- Matrix Background -->
+  <canvas class="matrix-bg" id="matrix"></canvas><!-- Game HUD -->
+  <div class="fixed top-4 right-4 z-50 game-card p-4 rounded-lg">
+   <div class="flex items-center space-x-4">
+    <div class="text-center">
+     <div class="terminal-text text-sm font-bold">
+      LEVEL
+     </div>
+     <div class="text-2xl text-white neon-glow mono-font">
+      15
+     </div>
     </div>
-    
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-40 bg-black bg-opacity-95 backdrop-blur-sm border-b border-green-500">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex justify-between items-center">
-                <div class="text-2xl font-bold terminal-text neon-glow mono-font glitch-text" data-text="HURIYA.DEV">
-                    HURIYA.DEV
-                </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="nav-link text-gray-300 hover:text-green-400 transition-colors mono-font">
-                        [HOME]
-                    </a>
-                    <a href="#about" class="nav-link text-gray-300 hover:text-green-400 transition-colors mono-font">
-                        [ABOUT]
-                    </a>
-                    <a href="#skills" class="nav-link text-gray-300 hover:text-green-400 transition-colors mono-font">
-                        [SKILLS]
-                    </a>
-                    <a href="#experience" class="nav-link text-gray-300 hover:text-green-400 transition-colors mono-font">
-                        [EXPERIENCE]
-                    </a>
-                    <a href="#projects" class="nav-link text-gray-300 hover:text-green-400 transition-colors mono-font">
-                        [PROJECTS]
-                    </a>
-                    <a href="#contact" class="nav-link text-gray-300 hover:text-green-400 transition-colors mono-font">
-                        [CONTACT]
-                    </a>
-                </div>
-                <button id="menu-toggle" class="md:hidden terminal-text">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
-            </div>
+    <div class="flex-1">
+     <div class="text-xs terminal-text mb-1">
+      XP: 2,750 / 3,000
+     </div>
+     <div class="w-32 h-2 bg-gray-800 rounded-full border border-green-500">
+      <div class="xp-bar h-2 rounded-full" style="width: 91.6%;"></div>
+     </div>
+    </div>
+    <div class="status-indicator"></div>
+   </div>
+  </div><!-- Navigation -->
+  <nav class="fixed top-0 w-full z-40 bg-black bg-opacity-95 backdrop-blur-sm border-b border-green-500">
+   <div class="container mx-auto px-6 py-4">
+    <div class="flex justify-between items-center">
+     <div class="hidden md:flex space-x-8"><a href="#home" class="nav-link text-gray-300 hover:text-green-400 transition-colors mono-font"> [HOME] </a> <a href="#about" class="nav-link text-gray-300 hover:text-green-400 transition-colors mono-font"> [ABOUT] </a> <a href="#skills" class="nav-link text-gray-300 hover:text-green-400 transition-colors mono-font"> [SKILLS] </a> <a href="#experience" class="nav-link text-gray-300 hover:text-green-400 transition-colors mono-font"> [EXPERIENCE] </a> <a href="#projects" class="nav-link text-gray-300 hover:text-green-400 transition-colors mono-font"> [PROJECTS] </a> <a href="#contact" class="nav-link text-gray-300 hover:text-green-400 transition-colors mono-font"> [CONTACT] </a>
+     </div><button id="menu-toggle" class="md:hidden terminal-text">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg></button>
+    </div>
+   </div>
+  </nav><!-- Hero Section -->
+  <section id="home" class="min-h-screen flex items-center justify-center relative pt-20">
+   <div class="text-center z-10">
+    <div class="mb-8">
+     <h1 class="text-6xl md:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-300 mono-font glitch-text" data-text="HURIYA IRFAN">HURIYA IRFAN</h1>
+     <div class="typing-effect text-2xl md:text-3xl terminal-text mt-4 mx-auto max-w-fit mono-font">
+      Computer Science Student
+     </div>
+    </div>
+    <div class="game-card p-6 rounded-lg max-w-md mx-auto mb-8">
+     <div class="terminal-text mb-4 font-bold mono-font text-center">
+      SYSTEM INFO
+     </div>
+     <div class="space-y-2 text-left mono-font text-sm">
+      <div class="flex justify-between"><span class="text-green-400">Location:</span> <span>Karachi, Pakistan</span>
+      </div>
+      <div class="flex justify-between"><span class="text-green-400">Email:</span> <span>hur1ya1rfanwork@gmail.com</span>
+      </div>
+      <div class="flex justify-between"><span class="text-green-400">Phone:</span> <span>+92 3101078428</span>
+      </div>
+      <div class="flex justify-between"><span class="text-green-400">Status:</span> <span class="flex items-center">
+        <div class="status-indicator mr-2"></div> Available </span>
+      </div>
+     </div>
+    </div><button id="start-quest" class="game-button text-black font-bold py-3 px-8 rounded-lg text-lg mono-font"> INITIALIZE </button>
+   </div>
+  </section><!-- About Section -->
+  <section id="about" class="py-20">
+   <div class="container mx-auto px-6">
+    <h2 class="text-5xl font-bold text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-300 neon-glow mono-font">PROFILE.EXE</h2>
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+     <div class="game-card p-8 rounded-lg">
+      <div class="flex items-center mb-4">
+       <div class="w-4 h-4 bg-green-400 rounded-full mr-3"></div>
+       <h3 class="text-2xl font-bold terminal-text mono-font">OVERVIEW</h3>
+      </div>
+      <p class="text-lg leading-relaxed mb-6 text-gray-300">I'm a gap year Computer Science student passionate about mechatronics and Formula 1 engineering. I led team DriftX to 2nd place nationally and highest engineering marks, proving my ability to strategize, manage, and innovate under pressure. From design to hands-on execution, I'm driven by mechanical engineering challenges.</p>
+      <p class="text-lg leading-relaxed text-gray-300">Beyond competition, I'm building an NGO to teach STEM projects to underprivileged kids across Pakistan. I've volunteered with multiple NGOs tutoring students for free, organized city-level sports events with 150+ participants, and hosted beach cleanup drives. I believe in learning by doing and using my skills to create meaningful impact.</p>
+     </div>
+     <div class="space-y-6">
+      <div class="game-card p-6 rounded-lg">
+       <div class="flex items-center mb-4">
+        <div class="w-4 h-4 bg-green-400 rounded-full mr-3"></div>
+        <h3 class="text-xl font-bold terminal-text mono-font">EDUCATION</h3>
+       </div>
+       <div class="space-y-4">
+        <div class="bg-gray-800 p-3 rounded-lg border border-green-500">
+         <div class="font-semibold text-green-400">
+          Gap Year (2024-2025)
+         </div>
+         <div class="text-sm text-gray-300">
+          Building projects, gaining experience, preparing for university
+         </div>
         </div>
-    </nav>
-    
-    <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center relative pt-20">
-        <div class="text-center z-10">
-            <div class="mb-8">
-                <h1 class="text-6xl md:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-300 mono-font glitch-text" data-text="HURIYA IRFAN">
-                    HURIYA IRFAN
-                </h1>
-                <div class="typing-effect text-2xl md:text-3xl terminal-text mt-4 mx-auto max-w-fit mono-font">
-                    Computer Science Student | Developer
-                </div>
-            </div>
-            
-            <div class="game-card p-6 rounded-lg max-w-md mx-auto mb-8">
-                <div class="terminal-text mb-4 font-bold mono-font text-center">SYSTEM INFO</div>
-                <div class="space-y-2 text-left mono-font text-sm">
-                    <div class="flex justify-between">
-                        <span class="text-green-400">Location:</span>
-                        <span>Karachi, Pakistan</span>
-                    </div>
-                    <div class="flex justify-between">
-                        <span class="text-green-400">Email:</span>
-                        <span>hur1ya1rfanwork@gmail.com</span>
-                    </div>
-                    <div class="flex justify-between">
-                        <span class="text-green-400">Phone:</span>
-                        <span>+92 3101078428</span>
-                    </div>
-                    <div class="flex justify-between">
-                        <span class="text-green-400">Status:</span>
-                        <span class="flex items-center">
-                            <div class="status-indicator mr-2"></div>
-                            Available
-                        </span>
-                    </div>
-                </div>
-            </div>
-            
-            <button id="start-quest" class="game-button text-black font-bold py-3 px-8 rounded-lg text-lg mono-font">
-                INITIALIZE
-            </button>
+        <div class="level-indicator p-3 rounded-lg text-black">
+         <div class="font-semibold">
+          Applying to Universities
+         </div>
+         <div class="text-sm opacity-80">
+          Mechanical Engineering / Mechatronics
+         </div>
         </div>
-    </section>
-    
-    <!-- About Section -->
-    <section id="about" class="py-20">
-        <div class="container mx-auto px-6">
-            <h2 class="text-5xl font-bold text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-300 neon-glow mono-font">
-                PROFILE.EXE
-            </h2>
-            
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="game-card p-8 rounded-lg">
-                    <div class="flex items-center mb-4">
-                        <div class="w-4 h-4 bg-green-400 rounded-full mr-3"></div>
-                        <h3 class="text-2xl font-bold terminal-text mono-font">OVERVIEW</h3>
-                    </div>
-                    <p class="text-lg leading-relaxed mb-6 text-gray-300">
-                        I'm a first-generation Computer Science undergrad at FAST-NUCES Karachi who blends creativity with logic to build things that matter. From designing school posters to exploring robotics, I've grown into full-stack development with a focus on AI and ML for social good.
-                    </p>
-                    <p class="text-lg leading-relaxed text-gray-300">
-                        I've gained practical skills in UI/UX design, social media marketing, and content creation, which I apply across personal projects, NGO campaigns, and my own brand. I believe in building from scratch, learning by doing, and contributing meaningfully.
-                    </p>
-                </div>
-                
-                <div class="space-y-6">
-                    <div class="game-card p-6 rounded-lg">
-                        <div class="flex items-center mb-4">
-                            <div class="w-4 h-4 bg-green-400 rounded-full mr-3"></div>
-                            <h3 class="text-xl font-bold terminal-text mono-font">EDUCATION</h3>
-                        </div>
-                        <div class="space-y-4">
-                            <div class="level-indicator p-3 rounded-lg text-black">
-                                <div class="font-semibold">BS Computer Science (In Progress)</div>
-                                <div class="text-sm opacity-80">FAST-NUCES, Karachi</div>
-                            </div>
-                            <div class="bg-gray-800 p-3 rounded-lg border border-green-500">
-                                <div class="font-semibold text-green-400">HSC - A Grade</div>
-                                <div class="text-sm text-gray-300">Rank: 83rd/165 (Top 0.47%)</div>
-                            </div>
-                            <div class="bg-gray-800 p-3 rounded-lg border border-green-500">
-                                <div class="font-semibold text-green-400">SSC - A* Grade</div>
-                                <div class="text-sm text-gray-300">Rank: 4th/120</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="game-card p-6 rounded-lg">
-                        <div class="flex items-center mb-4">
-                            <div class="w-4 h-4 bg-green-400 rounded-full mr-3"></div>
-                            <h3 class="text-xl font-bold terminal-text mono-font">STATS</h3>
-                        </div>
-                        <div class="grid grid-cols-2 gap-4 mono-font">
-                            <div class="text-center">
-                                <div class="text-2xl font-bold terminal-text">1550</div>
-                                <div class="text-sm text-gray-400">SAT Score</div>
-                            </div>
-                            <div class="text-center">
-                                <div class="text-2xl font-bold terminal-text">4</div>
-                                <div class="text-sm text-gray-400">Languages</div>
-                            </div>
-                            <div class="text-center">
-                                <div class="text-2xl font-bold terminal-text">780K+</div>
-                                <div class="text-sm text-gray-400">PKR Raised</div>
-                            </div>
-                            <div class="text-center">
-                                <div class="text-2xl font-bold terminal-text">Multiple</div>
-                                <div class="text-sm text-gray-400">Awards</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="bg-gray-800 p-3 rounded-lg border border-green-500">
+         <div class="font-semibold text-green-400">
+          HSC - A Grade
+         </div>
+         <div class="text-sm text-gray-300">
+          Rank: 83rd/165 (Top 0.47%)
+         </div>
         </div>
-    </section>
-    
-    <!-- Skills Section -->
-    <section id="skills" class="py-20">
-        <div class="container mx-auto px-6">
-            <h2 class="text-5xl font-bold text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-green-400 neon-glow mono-font">
-                SKILLS.JSON
-            </h2>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="game-card p-6 rounded-lg">
-                    <div class="flex items-center mb-6">
-                        <div class="w-4 h-4 bg-green-400 rounded-full mr-3"></div>
-                        <h3 class="text-2xl font-bold terminal-text mono-font">PROGRAMMING</h3>
-                    </div>
-                    <div class="space-y-4">
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-2 mono-font">
-                                <span class="text-green-400">Python</span>
-                                <span class="terminal-text font-bold">85%</span>
-                            </div>
-                            <div class="skill-progress rounded-full h-2">
-                                <div class="skill-fill h-2 rounded-full" style="width: 85%;"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-2 mono-font">
-                                <span class="text-green-400">JavaScript</span>
-                                <span class="terminal-text font-bold">80%</span>
-                            </div>
-                            <div class="skill-progress rounded-full h-2">
-                                <div class="skill-fill h-2 rounded-full" style="width: 80%;"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-2 mono-font">
-                                <span class="text-green-400">C++</span>
-                                <span class="terminal-text font-bold">75%</span>
-                            </div>
-                            <div class="skill-progress rounded-full h-2">
-                                <div class="skill-fill h-2 rounded-full" style="width: 75%;"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-2 mono-font">
-                                <span class="text-green-400">HTML/CSS</span>
-                                <span class="terminal-text font-bold">90%</span>
-                            </div>
-                            <div class="skill-progress rounded-full h-2">
-                                <div class="skill-fill h-2 rounded-full" style="width: 90%;"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="game-card p-6 rounded-lg">
-                    <div class="flex items-center mb-6">
-                        <div class="w-4 h-4 bg-green-400 rounded-full mr-3"></div>
-                        <h3 class="text-2xl font-bold terminal-text mono-font">TOOLS</h3>
-                    </div>
-                    <div class="grid grid-cols-2 gap-3">
-                        <div class="bg-gray-800 p-3 rounded-lg text-center border border-green-500">
-                            <div class="text-lg mb-1">GitHub</div>
-                            <div class="text-xs text-green-400 mono-font">Version Control</div>
-                        </div>
-                        <div class="bg-gray-800 p-3 rounded-lg text-center border border-green-500">
-                            <div class="text-lg mb-1">Figma</div>
-                            <div class="text-xs text-green-400 mono-font">UI/UX Design</div>
-                        </div>
-                        <div class="bg-gray-800 p-3 rounded-lg text-center border border-green-500">
-                            <div class="text-lg mb-1">Canva</div>
-                            <div class="text-xs text-green-400 mono-font">Graphics</div>
-                        </div>
-                        <div class="bg-gray-800 p-3 rounded-lg text-center border border-green-500">
-                            <div class="text-lg mb-1">Blender</div>
-                            <div class="text-xs text-green-400 mono-font">3D Modeling</div>
-                        </div>
-                        <div class="bg-gray-800 p-3 rounded-lg text-center border border-green-500">
-                            <div class="text-lg mb-1">React</div>
-                            <div class="text-xs text-green-400 mono-font">Frontend</div>
-                        </div>
-                        <div class="bg-gray-800 p-3 rounded-lg text-center border border-green-500">
-                            <div class="text-lg mb-1">Web Dev</div>
-                            <div class="text-xs text-green-400 mono-font">Full Stack</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="game-card p-6 rounded-lg">
-                    <div class="flex items-center mb-6">
-                        <div class="w-4 h-4 bg-green-400 rounded-full mr-3"></div>
-                        <h3 class="text-2xl font-bold terminal-text mono-font">SOFT SKILLS</h3>
-                    </div>
-                    <div class="space-y-3">
-                        <div class="flex items-center space-x-3 p-2 bg-gray-800 rounded border border-green-500">
-                            <div class="w-2 h-2 bg-green-400 rounded-full"></div>
-                            <span>Creative Thinking</span>
-                        </div>
-                        <div class="flex items-center space-x-3 p-2 bg-gray-800 rounded border border-green-500">
-                            <div class="w-2 h-2 bg-green-400 rounded-full"></div>
-                            <span>Problem Solving</span>
-                        </div>
-                        <div class="flex items-center space-x-3 p-2 bg-gray-800 rounded border border-green-500">
-                            <div class="w-2 h-2 bg-green-400 rounded-full"></div>
-                            <span>Leadership</span>
-                        </div>
-                        <div class="flex items-center space-x-3 p-2 bg-gray-800 rounded border border-green-500">
-                            <div class="w-2 h-2 bg-green-400 rounded-full"></div>
-                            <span>Communication</span>
-                        </div>
-                        <div class="flex items-center space-x-3 p-2 bg-gray-800 rounded border border-green-500">
-                            <div class="w-2 h-2 bg-green-400 rounded-full"></div>
-                            <span>Teamwork</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="bg-gray-800 p-3 rounded-lg border border-green-500">
+         <div class="font-semibold text-green-400">
+          SSC - A* Grade
+         </div>
+         <div class="text-sm text-gray-300">
+          Rank: 4th/120
+         </div>
         </div>
-    </section>
-    
-    <!-- Experience Section -->
-    <section id="experience" class="py-20">
-        <div class="container mx-auto px-6">
-            <h2 class="text-5xl font-bold text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-300 neon-glow mono-font">
-                EXPERIENCE.LOG
-            </h2>
-            
-            <div class="space-y-8">
-                <div class="game-card p-6 rounded-lg quest-complete">
-                    <div class="flex items-start justify-between mb-4">
-                        <div class="flex items-center">
-                            <div class="w-12 h-12 bg-green-400 rounded-lg flex items-center justify-center mr-4">
-                                <div class="w-6 h-6 bg-black rounded"></div>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold terminal-text mono-font">FOUNDER</h3>
-                                <p class="text-xl text-green-400">WhimsyLoops</p>
-                                <div class="flex items-center mt-1">
-                                    <div class="w-2 h-2 bg-green-400 rounded-full mr-2"></div>
-                                    <span class="text-sm text-gray-400 mono-font">ACTIVE</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text-right">
-                            <p class="terminal-text font-bold mono-font">Feb 2024 – Present</p>
-                            <p class="text-gray-400 mono-font text-sm">+2,500 XP</p>
-                        </div>
-                    </div>
-                    <div class="bg-gray-900 p-4 rounded-lg border border-green-500">
-                        <h4 class="terminal-text font-bold mb-2 mono-font">RESPONSIBILITIES:</h4>
-                        <ul class="space-y-1 text-gray-300 mono-font text-sm">
-                            <li>• Started handmade crafts business</li>
-                            <li>• Built brand identity using design skills</li>
-                            <li>• Created Instagram content strategy</li>
-                            <li>• Developed social media marketing campaigns</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="game-card p-6 rounded-lg quest-complete">
-                    <div class="flex items-start justify-between mb-4">
-                        <div class="flex items-center">
-                            <div class="w-12 h-12 bg-green-400 rounded-lg flex items-center justify-center mr-4">
-                                <div class="w-6 h-6 bg-black rounded"></div>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold terminal-text mono-font">DESIGNER</h3>
-                                <p class="text-xl text-green-400">Freelance</p>
-                                <div class="flex items-center mt-1">
-                                    <div class="w-2 h-2 bg-gray-500 rounded-full mr-2"></div>
-                                    <span class="text-sm text-gray-400 mono-font">COMPLETED</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text-right">
-                            <p class="terminal-text font-bold mono-font">May 2023 – Oct 2024</p>
-                            <p class="text-gray-400 mono-font text-sm">+3,000 XP</p>
-                        </div>
-                    </div>
-                    <div class="bg-gray-900 p-4 rounded-lg border border-green-500">
-                        <h4 class="terminal-text font-bold mb-2 mono-font">RESPONSIBILITIES:</h4>
-                        <ul class="space-y-1 text-gray-300 mono-font text-sm">
-                            <li>• Led design for mental health NGO campaign</li>
-                            <li>• Created bilingual content for wellness initiatives</li>
-                            <li>• Managed design team coordination</li>
-                            <li>• Maintained brand consistency across platforms</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="game-card p-6 rounded-lg quest-complete">
-                    <div class="flex items-start justify-between mb-4">
-                        <div class="flex items-center">
-                            <div class="w-12 h-12 bg-green-400 rounded-lg flex items-center justify-center mr-4">
-                                <div class="w-6 h-6 bg-black rounded"></div>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold terminal-text mono-font">VOLUNTEER</h3>
-                                <p class="text-xl text-green-400">Relief Operations</p>
-                                <div class="flex items-center mt-1">
-                                    <div class="w-2 h-2 bg-green-400 rounded-full mr-2"></div>
-                                    <span class="text-sm text-gray-400 mono-font">ACTIVE</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text-right">
-                            <p class="terminal-text font-bold mono-font">Apr 2023 – Present</p>
-                            <p class="text-gray-400 mono-font text-sm">+5,000 XP</p>
-                        </div>
-                    </div>
-                    <div class="bg-gray-900 p-4 rounded-lg border border-green-500">
-                        <h4 class="terminal-text font-bold mb-2 mono-font">ACHIEVEMENTS:</h4>
-                        <ul class="space-y-1 text-gray-300 mono-font text-sm">
-                            <li>• Raised PKR 780,000+ for disaster relief</li>
-                            <li>• Designed campaign visuals for fundraising</li>
-                            <li>• Participated in local distribution operations</li>
-                            <li>• Developed urgency-based design strategies</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+       </div>
+      </div>
+      <div class="game-card p-6 rounded-lg">
+       <div class="flex items-center mb-4">
+        <div class="w-4 h-4 bg-green-400 rounded-full mr-3"></div>
+        <h3 class="text-xl font-bold terminal-text mono-font">STATS</h3>
+       </div>
+       <div class="grid grid-cols-2 gap-4 mono-font">
+        <div class="text-center">
+         <div class="text-2xl font-bold terminal-text">
+          1550
+         </div>
+         <div class="text-sm text-gray-400">
+          SAT Score
+         </div>
         </div>
-    </section>
-    
-    <!-- Projects Section -->
-    <section id="projects" class="py-20">
-        <div class="container mx-auto px-6">
-            <h2 class="text-5xl font-bold text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-green-400 neon-glow mono-font">
-                PROJECTS.DIR
-            </h2>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="achievement-card p-6 rounded-lg achievement-item">
-                    <div class="text-center mb-4">
-                        <div class="w-16 h-16 bg-green-400 rounded-lg flex items-center justify-center mx-auto mb-3">
-                            <div class="w-8 h-8 bg-black rounded"></div>
-                        </div>
-                        <div class="level-indicator px-3 py-1 rounded-full text-sm font-bold mono-font text-black">
-                            COMPLETED
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-bold terminal-text mb-2 text-center mono-font">STEM EXPO</h3>
-                    <p class="text-gray-300 mb-4 text-center">College STEM Expo winner with IoT innovation</p>
-                    <div class="flex justify-center space-x-2">
-                        <span class="px-3 py-1 bg-green-400 bg-opacity-20 text-green-400 rounded-full text-sm mono-font">IoT</span>
-                        <span class="px-3 py-1 bg-green-400 bg-opacity-20 text-green-400 rounded-full text-sm mono-font">Innovation</span>
-                    </div>
-                    <div class="text-center mt-3 terminal-text font-bold mono-font">+1,000 XP</div>
-                </div>
-                
-                <div class="achievement-card p-6 rounded-lg achievement-item">
-                    <div class="text-center mb-4">
-                        <div class="w-16 h-16 bg-green-400 rounded-lg flex items-center justify-center mx-auto mb-3">
-                            <div class="w-8 h-8 bg-black rounded"></div>
-                        </div>
-                        <div class="level-indicator px-3 py-1 rounded-full text-sm font-bold mono-font text-black">
-                            COMPLETED
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-bold terminal-text mb-2 text-center mono-font">SMART CITY</h3>
-                    <p class="text-gray-300 mb-4 text-center">Smart city prototype for science fair</p>
-                    <div class="flex justify-center space-x-2">
-                        <span class="px-3 py-1 bg-green-400 bg-opacity-20 text-green-400 rounded-full text-sm mono-font">Smart City</span>
-                        <span class="px-3 py-1 bg-green-400 bg-opacity-20 text-green-400 rounded-full text-sm mono-font">Tech</span>
-                    </div>
-                    <div class="text-center mt-3 terminal-text font-bold mono-font">+800 XP</div>
-                </div>
-                
-                <div class="achievement-card p-6 rounded-lg achievement-item">
-                    <div class="text-center mb-4">
-                        <div class="w-16 h-16 bg-green-400 rounded-lg flex items-center justify-center mx-auto mb-3">
-                            <div class="w-8 h-8 bg-black rounded"></div>
-                        </div>
-                        <div class="level-indicator px-3 py-1 rounded-full text-sm font-bold mono-font text-black">
-                            COMPLETED
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-bold terminal-text mb-2 text-center mono-font">ROBOTICS</h3>
-                    <p class="text-gray-300 mb-4 text-center">City-level robotics innovation recognition</p>
-                    <div class="flex justify-center space-x-2">
-                        <span class="px-3 py-1 bg-green-400 bg-opacity-20 text-green-400 rounded-full text-sm mono-font">Robotics</span>
-                        <span class="px-3 py-1 bg-green-400 bg-opacity-20 text-green-400 rounded-full text-sm mono-font">AI</span>
-                    </div>
-                    <div class="text-center mt-3 terminal-text font-bold mono-font">+750 XP</div>
-                </div>
-                
-                <div class="achievement-card p-6 rounded-lg achievement-item">
-                    <div class="text-center mb-4">
-                        <div class="w-16 h-16 bg-green-400 rounded-lg flex items-center justify-center mx-auto mb-3">
-                            <div class="w-8 h-8 bg-black rounded"></div>
-                        </div>
-                        <div class="level-indicator px-3 py-1 rounded-full text-sm font-bold mono-font text-black">
-                            COMPLETED
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-bold terminal-text mb-2 text-center mono-font">BRAND IDENTITY</h3>
-                    <p class="text-gray-300 mb-4 text-center">Complete brand identity for WhimsyLoops</p>
-                    <div class="flex justify-center space-x-2">
-                        <span class="px-3 py-1 bg-green-400 bg-opacity-20 text-green-400 rounded-full text-sm mono-font">Branding</span>
-                        <span class="px-3 py-1 bg-green-400 bg-opacity-20 text-green-400 rounded-full text-sm mono-font">Business</span>
-                    </div>
-                    <div class="text-center mt-3 terminal-text font-bold mono-font">+1,200 XP</div>
-                </div>
-                
-                <div class="achievement-card p-6 rounded-lg achievement-item">
-                    <div class="text-center mb-4">
-                        <div class="w-16 h-16 bg-green-400 rounded-lg flex items-center justify-center mx-auto mb-3">
-                            <div class="w-8 h-8 bg-black rounded"></div>
-                        </div>
-                        <div class="level-indicator px-3 py-1 rounded-full text-sm font-bold mono-font text-black">
-                            COMPLETED
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-bold terminal-text mb-2 text-center mono-font">RELIEF CAMPAIGN</h3>
-                    <p class="text-gray-300 mb-4 text-center">Raised 780K+ PKR through campaign design</p>
-                    <div class="flex justify-center space-x-2">
-                        <span class="px-3 py-1 bg-green-400 bg-opacity-20 text-green-400 rounded-full text-sm mono-font">Charity</span>
-                        <span class="px-3 py-1 bg-green-400 bg-opacity-20 text-green-400 rounded-full text-sm mono-font">Impact</span>
-                    </div>
-                    <div class="text-center mt-3 terminal-text font-bold mono-font">+2,000 XP</div>
-                </div>
-                
-                <div class="achievement-card p-6 rounded-lg achievement-item">
-                    <div class="text-center mb-4">
-                        <div class="w-16 h-16 bg-green-400 rounded-lg flex items-center justify-center mx-auto mb-3">
-                            <div class="w-8 h-8 bg-black rounded"></div>
-                        </div>
-                        <div class="level-indicator px-3 py-1 rounded-full text-sm font-bold mono-font text-black">
-                            COMPLETED
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-bold terminal-text mb-2 text-center mono-font">SPORTS LEADERSHIP</h3>
-                    <p class="text-gray-300 mb-4 text-center">Cricket team captain and sports club management</p>
-                    <div class="flex justify-center space-x-2">
-                        <span class="px-3 py-1 bg-green-400 bg-opacity-20 text-green-400 rounded-full text-sm mono-font">Leadership</span>
-                        <span class="px-3 py-1 bg-green-400 bg-opacity-20 text-green-400 rounded-full text-sm mono-font">Sports</span>
-                    </div>
-                    <div class="text-center mt-3 terminal-text font-bold mono-font">+900 XP</div>
-                </div>
-            </div>
+        <div class="text-center">
+         <div class="text-2xl font-bold terminal-text">
+          4
+         </div>
+         <div class="text-sm text-gray-400">
+          Languages
+         </div>
         </div>
-    </section>
-    
-    <!-- Contact Section -->
-    <section id="contact" class="py-20">
-        <div class="container mx-auto px-6">
-            <h2 class="text-5xl font-bold text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-300 neon-glow mono-font">
-                CONTACT.SYS
-            </h2>
-            
-            <div class="max-w-4xl mx-auto">
-                <div class="grid md:grid-cols-2 gap-12">
-                    <div class="space-y-8">
-                        <div class="game-card p-6 rounded-lg">
-                            <div class="flex items-center mb-4">
-                                <div class="w-4 h-4 bg-green-400 rounded-full mr-3"></div>
-                                <h3 class="text-2xl font-bold terminal-text mono-font">CHANNELS</h3>
-                            </div>
-                            <div class="space-y-4">
-                                <div class="flex items-center space-x-4 p-3 bg-gray-900 rounded-lg border border-green-500">
-                                    <div class="w-8 h-8 bg-green-400 rounded-lg flex items-center justify-center">
-                                        <div class="w-4 h-4 bg-black rounded"></div>
-                                    </div>
-                                    <div>
-                                        <div class="terminal-text font-bold mono-font">EMAIL</div>
-                                        <div class="text-gray-300 mono-font text-sm">hur1ya1rfanwork@gmail.com</div>
-                                    </div>
-                                </div>
-                                <div class="flex items-center space-x-4 p-3 bg-gray-900 rounded-lg border border-green-500">
-                                    <div class="w-8 h-8 bg-green-400 rounded-lg flex items-center justify-center">
-                                        <div class="w-4 h-4 bg-black rounded"></div>
-                                    </div>
-                                    <div>
-                                        <div class="terminal-text font-bold mono-font">PHONE</div>
-                                        <div class="text-gray-300 mono-font text-sm">+92 3101078428</div>
-                                    </div>
-                                </div>
-                                <div class="flex items-center space-x-4 p-3 bg-gray-900 rounded-lg border border-green-500">
-                                    <div class="w-8 h-8 bg-green-400 rounded-lg flex items-center justify-center">
-                                        <div class="w-4 h-4 bg-black rounded"></div>
-                                    </div>
-                                    <div>
-                                        <div class="terminal-text font-bold mono-font">LINKEDIN</div>
-                                        <div class="text-gray-300 mono-font text-sm">linkedin.com/in/huriyairfan</div>
-                                    </div>
-                                </div>
-                                <div class="flex items-center space-x-4 p-3 bg-gray-900 rounded-lg border border-green-500">
-                                    <div class="w-8 h-8 bg-green-400 rounded-lg flex items-center justify-center">
-                                        <div class="w-4 h-4 bg-black rounded"></div>
-                                    </div>
-                                    <div>
-                                        <div class="terminal-text font-bold mono-font">GITHUB</div>
-                                        <div class="text-gray-300 mono-font text-sm">github.com/bedobeeeee</div>
-                                    </div>
-                                </div>
-                                <div class="flex items-center space-x-4 p-3 bg-gray-900 rounded-lg border border-green-500">
-                                    <div class="w-8 h-8 bg-green-400 rounded-lg flex items-center justify-center">
-                                        <div class="w-4 h-4 bg-black rounded"></div>
-                                    </div>
-                                    <div>
-                                        <div class="terminal-text font-bold mono-font">LOCATION</div>
-                                        <div class="text-gray-300 mono-font text-sm">Karachi, Pakistan</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="game-card p-6 rounded-lg">
-                        <div class="flex items-center mb-6">
-                            <div class="w-4 h-4 bg-green-400 rounded-full mr-3"></div>
-                            <h3 class="text-2xl font-bold terminal-text mono-font">MESSAGE</h3>
-                        </div>
-                        <form class="space-y-4" id="contact-form">
-                            <div>
-                                <label class="block terminal-text mb-2 font-bold mono-font">NAME</label>
-                                <input type="text" placeholder="Enter your name..." class="w-full bg-black border border-green-500 rounded-lg px-4 py-3 text-white focus:border-green-400 focus:outline-none transition-colors mono-font">
-                            </div>
-                            <div>
-                                <label class="block terminal-text mb-2 font-bold mono-font">EMAIL</label>
-                                <input type="email" placeholder="your.email@domain.com" class="w-full bg-black border border-green-500 rounded-lg px-4 py-3 text-white focus:border-green-400 focus:outline-none transition-colors mono-font">
-                            </div>
-                            <div>
-                                <label class="block terminal-text mb-2 font-bold mono-font">MESSAGE</label>
-                                <textarea placeholder="Type your message here..." rows="4" class="w-full bg-black border border-green-500 rounded-lg px-4 py-3 text-white focus:border-green-400 focus:outline-none transition-colors resize-none mono-font"></textarea>
-                            </div>
-                            <button type="submit" class="w-full game-button text-black font-bold py-3 rounded-lg text-lg mono-font">
-                                SEND MESSAGE
-                            </button>
-                        </form>
-                        <div class="mt-4 text-center text-gray-400 text-sm mono-font">
-                            Demo Mode - Messages are simulated
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="text-center">
+         <div class="text-2xl font-bold terminal-text">
+          780K+
+         </div>
+         <div class="text-sm text-gray-400">
+          PKR Raised
+         </div>
         </div>
-    </section>
-    
-    <!-- Footer -->
-    <footer class="py-8 border-t border-green-500">
-        <div class="container mx-auto px-6 text-center">
-            <div class="text-gray-400 mb-2 mono-font">
-                © 2025 HURIYA IRFAN - Level 15 Developer
-            </div>
-            <div class="text-sm terminal-text mono-font">
-                System Status: Online | Build: v2.0.1
-            </div>
+        <div class="text-center">
+         <div class="text-2xl font-bold terminal-text">
+          Multiple
+         </div>
+         <div class="text-sm text-gray-400">
+          Awards
+         </div>
         </div>
-    </footer>
-    
-    <script>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Skills Section -->
+  <section id="skills" class="py-20">
+   <div class="container mx-auto px-6">
+    <h2 class="text-5xl font-bold text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-green-400 neon-glow mono-font">SKILLS.JSON</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+     <div class="game-card p-6 rounded-lg">
+      <div class="flex items-center mb-6">
+       <div class="w-4 h-4 bg-green-400 rounded-full mr-3"></div>
+       <h3 class="text-2xl font-bold terminal-text mono-font">PROGRAMMING</h3>
+      </div>
+      <div class="space-y-4">
+       <div class="skill-item">
+        <div class="flex justify-between mb-2 mono-font"><span class="text-green-400">Python</span> <span class="terminal-text font-bold">85%</span>
+        </div>
+        <div class="skill-progress rounded-full h-2">
+         <div class="skill-fill h-2 rounded-full" style="width: 85%;"></div>
+        </div>
+       </div>
+       <div class="skill-item">
+        <div class="flex justify-between mb-2 mono-font"><span class="text-green-400">JavaScript</span> <span class="terminal-text font-bold">80%</span>
+        </div>
+        <div class="skill-progress rounded-full h-2">
+         <div class="skill-fill h-2 rounded-full" style="width: 80%;"></div>
+        </div>
+       </div>
+       <div class="skill-item">
+        <div class="flex justify-between mb-2 mono-font"><span class="text-green-400">C++</span> <span class="terminal-text font-bold">75%</span>
+        </div>
+        <div class="skill-progress rounded-full h-2">
+         <div class="skill-fill h-2 rounded-full" style="width: 75%;"></div>
+        </div>
+       </div>
+       <div class="skill-item">
+        <div class="flex justify-between mb-2 mono-font"><span class="text-green-400">HTML/CSS</span> <span class="terminal-text font-bold">90%</span>
+        </div>
+        <div class="skill-progress rounded-full h-2">
+         <div class="skill-fill h-2 rounded-full" style="width: 90%;"></div>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="game-card p-6 rounded-lg">
+      <div class="flex items-center mb-6">
+       <div class="w-4 h-4 bg-green-400 rounded-full mr-3"></div>
+       <h3 class="text-2xl font-bold terminal-text mono-font">TOOLS</h3>
+      </div>
+      <div class="grid grid-cols-2 gap-3">
+       <div class="bg-gray-800 p-3 rounded-lg text-center border border-green-500">
+        <div class="text-lg mb-1">
+         CAD Design
+        </div>
+        <div class="text-xs text-green-400 mono-font">
+         SolidWorks/Fusion 360
+        </div>
+       </div>
+       <div class="bg-gray-800 p-3 rounded-lg text-center border border-green-500">
+        <div class="text-lg mb-1">
+         Prototyping
+        </div>
+        <div class="text-xs text-green-400 mono-font">
+         Building &amp; Testing
+        </div>
+       </div>
+       <div class="bg-gray-800 p-3 rounded-lg text-center border border-green-500">
+        <div class="text-lg mb-1">
+         GitHub
+        </div>
+        <div class="text-xs text-green-400 mono-font">
+         Version Control
+        </div>
+       </div>
+       <div class="bg-gray-800 p-3 rounded-lg text-center border border-green-500">
+        <div class="text-lg mb-1">
+         Canva
+        </div>
+        <div class="text-xs text-green-400 mono-font">
+         Graphics &amp; Design
+        </div>
+       </div>
+       <div class="bg-gray-800 p-3 rounded-lg text-center border border-green-500">
+        <div class="text-lg mb-1">
+         Project Mgmt
+        </div>
+        <div class="text-xs text-green-400 mono-font">
+         Team Leadership
+        </div>
+       </div>
+       <div class="bg-gray-800 p-3 rounded-lg text-center border border-green-500">
+        <div class="text-lg mb-1">
+         Web Dev
+        </div>
+        <div class="text-xs text-green-400 mono-font">
+         Full Stack
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="game-card p-6 rounded-lg">
+      <div class="flex items-center mb-6">
+       <div class="w-4 h-4 bg-green-400 rounded-full mr-3"></div>
+       <h3 class="text-2xl font-bold terminal-text mono-font">SOFT SKILLS</h3>
+      </div>
+      <div class="space-y-3">
+       <div class="flex items-center space-x-3 p-2 bg-gray-800 rounded border border-green-500">
+        <div class="w-2 h-2 bg-green-400 rounded-full"></div><span>Creative Thinking</span>
+       </div>
+       <div class="flex items-center space-x-3 p-2 bg-gray-800 rounded border border-green-500">
+        <div class="w-2 h-2 bg-green-400 rounded-full"></div><span>Problem Solving</span>
+       </div>
+       <div class="flex items-center space-x-3 p-2 bg-gray-800 rounded border border-green-500">
+        <div class="w-2 h-2 bg-green-400 rounded-full"></div><span>Leadership</span>
+       </div>
+       <div class="flex items-center space-x-3 p-2 bg-gray-800 rounded border border-green-500">
+        <div class="w-2 h-2 bg-green-400 rounded-full"></div><span>Communication</span>
+       </div>
+       <div class="flex items-center space-x-3 p-2 bg-gray-800 rounded border border-green-500">
+        <div class="w-2 h-2 bg-green-400 rounded-full"></div><span>Teamwork</span>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Experience Section -->
+  <section id="experience" class="py-20">
+   <div class="container mx-auto px-6">
+    <h2 class="text-5xl font-bold text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-300 neon-glow mono-font">EXPERIENCE.LOG</h2>
+    <div class="space-y-8">
+     <div class="game-card p-6 rounded-lg quest-complete">
+      <div class="flex items-start justify-between mb-4">
+       <div class="flex items-center">
+        <div class="w-12 h-12 bg-green-400 rounded-lg flex items-center justify-center mr-4">
+         <div class="w-6 h-6 bg-black rounded"></div>
+        </div>
+        <div>
+         <h3 class="text-2xl font-bold terminal-text mono-font">FOUNDER (NGO)</h3>
+         <p class="text-xl text-green-400">STEM Learning Initiative</p>
+         <div class="flex items-center mt-1">
+          <div class="w-2 h-2 bg-green-400 rounded-full mr-2"></div><span class="text-sm text-gray-400 mono-font">IN PROGRESS</span>
+         </div>
+        </div>
+       </div>
+       <div class="text-right">
+        <p class="terminal-text font-bold mono-font">2025 – Ongoing</p>
+        <p class="text-gray-400 mono-font text-sm">+3,000 XP</p>
+       </div>
+      </div>
+      <div class="bg-gray-900 p-4 rounded-lg border border-green-500">
+       <h4 class="terminal-text font-bold mb-2 mono-font">VISION:</h4>
+       <ul class="space-y-1 text-gray-300 mono-font text-sm">
+        <li>• Teaching STEM projects to underprivileged kids across Pakistan</li>
+        <li>• Making quality STEM education accessible and free</li>
+        <li>• Promoting mechanical engineering and robotics to next generation</li>
+        <li>• Building community-based learning centers in different areas</li>
+       </ul>
+      </div>
+     </div>
+     <div class="game-card p-6 rounded-lg quest-complete">
+      <div class="flex items-start justify-between mb-4">
+       <div class="flex items-center">
+        <div class="w-12 h-12 bg-green-400 rounded-lg flex items-center justify-center mr-4">
+         <div class="w-6 h-6 bg-black rounded"></div>
+        </div>
+        <div>
+         <h3 class="text-2xl font-bold terminal-text mono-font">F1 IN SCHOOLS - DRIFTX</h3>
+         <p class="text-xl text-green-400">Team Captain</p>
+         <div class="flex items-center mt-1">
+          <div class="w-2 h-2 bg-gray-500 rounded-full mr-2"></div><span class="text-sm text-gray-400 mono-font">COMPLETED</span>
+         </div>
+        </div>
+       </div>
+       <div class="text-right">
+        <p class="terminal-text font-bold mono-font">Oct 2025 – Jan 2026</p>
+        <p class="text-gray-400 mono-font text-sm">+5,000 XP</p>
+       </div>
+      </div>
+      <div class="bg-gray-900 p-4 rounded-lg border border-green-500">
+       <h4 class="terminal-text font-bold mb-2 mono-font">ACHIEVEMENTS:</h4>
+       <ul class="space-y-1 text-gray-300 mono-font text-sm">
+        <li>• 2nd Place Nationally (out of 36 teams)</li>
+        <li>• Highest Marks in Engineering &amp; Design Category</li>
+        <li>����� Led team through car design, prototyping, and competition process</li>
+        <li>• Learned CAD design alongside team during project</li>
+        <li>• Managed team coordination and technical documentation</li>
+       </ul>
+      </div>
+     </div>
+     <div class="game-card p-6 rounded-lg quest-complete">
+      <div class="flex items-start justify-between mb-4">
+       <div class="flex items-center">
+        <div class="w-12 h-12 bg-green-400 rounded-lg flex items-center justify-center mr-4">
+         <div class="w-6 h-6 bg-black rounded"></div>
+        </div>
+        <div>
+         <h3 class="text-2xl font-bold terminal-text mono-font">VOLUNTEER - NGOs</h3>
+         <p class="text-xl text-green-400">Community Relief &amp; Education</p>
+         <div class="flex items-center mt-1">
+          <div class="w-2 h-2 bg-green-400 rounded-full mr-2"></div><span class="text-sm text-gray-400 mono-font">ACTIVE</span>
+         </div>
+        </div>
+       </div>
+       <div class="text-right">
+        <p class="terminal-text font-bold mono-font">2023 – Present</p>
+        <p class="text-gray-400 mono-font text-sm">+4,000 XP</p>
+       </div>
+      </div>
+      <div class="bg-gray-900 p-4 rounded-lg border border-green-500">
+       <h4 class="terminal-text font-bold mb-2 mono-font">HUMANITARIAN IMPACT:</h4>
+       <ul class="space-y-1 text-gray-300 mono-font text-sm">
+        <li>• Raised 780,000+ PKR for Pakistan floods relief</li>
+        <li>• Collected funds for Afghanistan and Palestine crises</li>
+        <li>• Organized Ramzan ration distribution drives</li>
+        <li>• Conducted post-Ramzan community support initiatives</li>
+        <li>• Free STEM tutoring for underprivileged kids</li>
+        <li>• Mentored students unable to afford paid education</li>
+       </ul>
+      </div>
+     </div>
+     <div class="game-card p-6 rounded-lg quest-complete">
+      <div class="flex items-start justify-between mb-4">
+       <div class="flex items-center">
+        <div class="w-12 h-12 bg-green-400 rounded-lg flex items-center justify-center mr-4">
+         <div class="w-6 h-6 bg-black rounded"></div>
+        </div>
+        <div>
+         <h3 class="text-2xl font-bold terminal-text mono-font">CITY-LEVEL ORGANIZER</h3>
+         <p class="text-xl text-green-400">Sports &amp; Community Events</p>
+         <div class="flex items-center mt-1">
+          <div class="w-2 h-2 bg-gray-500 rounded-full mr-2"></div><span class="text-sm text-gray-400 mono-font">COMPLETED</span>
+         </div>
+        </div>
+       </div>
+       <div class="text-right">
+        <p class="terminal-text font-bold mono-font">Dec 2025 – Jan 2026</p>
+        <p class="text-gray-400 mono-font text-sm">+2,500 XP</p>
+       </div>
+      </div>
+      <div class="bg-gray-900 p-4 rounded-lg border border-green-500">
+       <h4 class="terminal-text font-bold mb-2 mono-font">EVENTS ORGANIZED:</h4>
+       <ul class="space-y-1 text-gray-300 mono-font text-sm">
+        <li>• City-level sports tournament with 150+ participants</li>
+        <li>• Raised funds for F1 in Schools team</li>
+        <li>• Hosted city-level beach cleanup drive</li>
+        <li>• Community engagement and event coordination</li>
+       </ul>
+      </div>
+     </div>
+     <div class="game-card p-6 rounded-lg quest-complete">
+      <div class="flex items-start justify-between mb-4">
+       <div class="flex items-center">
+        <div class="w-12 h-12 bg-green-400 rounded-lg flex items-center justify-center mr-4">
+         <div class="w-6 h-6 bg-black rounded"></div>
+        </div>
+        <div>
+         <h3 class="text-2xl font-bold terminal-text mono-font">FOUNDER</h3>
+         <p class="text-xl text-green-400">WhimsyLoops</p>
+         <div class="flex items-center mt-1">
+          <div class="w-2 h-2 bg-green-400 rounded-full mr-2"></div><span class="text-sm text-gray-400 mono-font">ACTIVE</span>
+         </div>
+        </div>
+       </div>
+       <div class="text-right">
+        <p class="terminal-text font-bold mono-font">Feb 2024 – Present</p>
+        <p class="text-gray-400 mono-font text-sm">+2,500 XP</p>
+       </div>
+      </div>
+      <div class="bg-gray-900 p-4 rounded-lg border border-green-500">
+       <h4 class="terminal-text font-bold mb-2 mono-font">RESPONSIBILITIES:</h4>
+       <ul class="space-y-1 text-gray-300 mono-font text-sm">
+        <li>• Started handmade crafts business</li>
+        <li>• Built brand identity using design skills</li>
+        <li>• Created Instagram content strategy</li>
+        <li>• Developed social media marketing campaigns</li>
+       </ul>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Projects Section -->
+  <section id="projects" class="py-20">
+   <div class="container mx-auto px-6">
+    <h2 class="text-5xl font-bold text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-green-400 neon-glow mono-font">PROJECTS.DIR</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+     <div class="achievement-card p-6 rounded-lg achievement-item">
+      <div class="text-center mb-4">
+       <div class="w-16 h-16 bg-green-400 rounded-lg flex items-center justify-center mx-auto mb-3">
+        <div class="w-8 h-8 bg-black rounded"></div>
+       </div>
+       <div class="level-indicator px-3 py-1 rounded-full text-sm font-bold mono-font text-black">
+        COMPLETED
+       </div>
+      </div>
+      <h3 class="text-xl font-bold terminal-text mb-2 text-center mono-font">F1 IN SCHOOLS - DRIFTX</h3>
+      <p class="text-gray-300 mb-4 text-center">2nd Place Nationally • Highest Engineering Marks</p>
+      <div class="flex justify-center space-x-2"><span class="px-3 py-1 bg-green-400 bg-opacity-20 text-green-400 rounded-full text-sm mono-font">CAD</span> <span class="px-3 py-1 bg-green-400 bg-opacity-20 text-green-400 rounded-full text-sm mono-font">Racing</span>
+      </div>
+      <div class="text-center mt-3 terminal-text font-bold mono-font">
+       +5,000 XP
+      </div>
+     </div>
+     <div class="achievement-card p-6 rounded-lg achievement-item">
+      <div class="text-center mb-4">
+       <div class="w-16 h-16 bg-green-400 rounded-lg flex items-center justify-center mx-auto mb-3">
+        <div class="w-8 h-8 bg-black rounded"></div>
+       </div>
+       <div class="level-indicator px-3 py-1 rounded-full text-sm font-bold mono-font text-black">
+        COMPLETED
+       </div>
+      </div>
+      <h3 class="text-xl font-bold terminal-text mb-2 text-center mono-font">SPORTS TOURNAMENT</h3>
+      <p class="text-gray-300 mb-4 text-center">Organized • 150+ Participants • Fundraiser</p>
+      <div class="flex justify-center space-x-2"><span class="px-3 py-1 bg-green-400 bg-opacity-20 text-green-400 rounded-full text-sm mono-font">Organized</span> <span class="px-3 py-1 bg-green-400 bg-opacity-20 text-green-400 rounded-full text-sm mono-font">Event Mgmt</span>
+      </div>
+      <div class="text-center mt-3 terminal-text font-bold mono-font">
+       +2,000 XP
+      </div>
+     </div>
+     <div class="achievement-card p-6 rounded-lg achievement-item">
+      <div class="text-center mb-4">
+       <div class="w-16 h-16 bg-green-400 rounded-lg flex items-center justify-center mx-auto mb-3">
+        <div class="w-8 h-8 bg-black rounded"></div>
+       </div>
+       <div class="level-indicator px-3 py-1 rounded-full text-sm font-bold mono-font text-black">
+        COMPLETED
+       </div>
+      </div>
+      <h3 class="text-xl font-bold terminal-text mb-2 text-center mono-font">BADMINTON 1ST</h3>
+      <p class="text-gray-300 mb-4 text-center">City-Level Championship Winner</p>
+      <div class="flex justify-center space-x-2"><span class="px-3 py-1 bg-green-400 bg-opacity-20 text-green-400 rounded-full text-sm mono-font">Badminton</span> <span class="px-3 py-1 bg-green-400 bg-opacity-20 text-green-400 rounded-full text-sm mono-font">Champion</span>
+      </div>
+      <div class="text-center mt-3 terminal-text font-bold mono-font">
+       +1,500 XP
+      </div>
+     </div>
+     <div class="achievement-card p-6 rounded-lg achievement-item">
+      <div class="text-center mb-4">
+       <div class="w-16 h-16 bg-green-400 rounded-lg flex items-center justify-center mx-auto mb-3">
+        <div class="w-8 h-8 bg-black rounded"></div>
+       </div>
+       <div class="level-indicator px-3 py-1 rounded-full text-sm font-bold mono-font text-black">
+        COMPLETED
+       </div>
+      </div>
+      <h3 class="text-xl font-bold terminal-text mb-2 text-center mono-font">CRICKET 2ND</h3>
+      <p class="text-gray-300 mb-4 text-center">Institution's Local League</p>
+      <div class="flex justify-center space-x-2"><span class="px-3 py-1 bg-green-400 bg-opacity-20 text-green-400 rounded-full text-sm mono-font">Cricket</span> <span class="px-3 py-1 bg-green-400 bg-opacity-20 text-green-400 rounded-full text-sm mono-font">Runner-up</span>
+      </div>
+      <div class="text-center mt-3 terminal-text font-bold mono-font">
+       +1,200 XP
+      </div>
+     </div>
+     <div class="achievement-card p-6 rounded-lg achievement-item">
+      <div class="text-center mb-4">
+       <div class="w-16 h-16 bg-green-400 rounded-lg flex items-center justify-center mx-auto mb-3">
+        <div class="w-8 h-8 bg-black rounded"></div>
+       </div>
+       <div class="level-indicator px-3 py-1 rounded-full text-sm font-bold mono-font text-black">
+        COMPLETED
+       </div>
+      </div>
+      <h3 class="text-xl font-bold terminal-text mb-2 text-center mono-font">CRICKET 1ST</h3>
+      <p class="text-gray-300 mb-4 text-center">Local Tournament • 16 Teams</p>
+      <div class="flex justify-center space-x-2"><span class="px-3 py-1 bg-green-400 bg-opacity-20 text-green-400 rounded-full text-sm mono-font">Cricket</span> <span class="px-3 py-1 bg-green-400 bg-opacity-20 text-green-400 rounded-full text-sm mono-font">Champion</span>
+      </div>
+      <div class="text-center mt-3 terminal-text font-bold mono-font">
+       +1,500 XP
+      </div>
+     </div>
+     <div class="achievement-card p-6 rounded-lg achievement-item">
+      <div class="text-center mb-4">
+       <div class="w-16 h-16 bg-green-400 rounded-lg flex items-center justify-center mx-auto mb-3">
+        <div class="w-8 h-8 bg-black rounded"></div>
+       </div>
+       <div class="level-indicator px-3 py-1 rounded-full text-sm font-bold mono-font text-black">
+        IN PROGRESS
+       </div>
+      </div>
+      <h3 class="text-xl font-bold terminal-text mb-2 text-center mono-font">STEM NGO</h3>
+      <p class="text-gray-300 mb-4 text-center">Free STEM education across Pakistan</p>
+      <div class="flex justify-center space-x-2"><span class="px-3 py-1 bg-green-400 bg-opacity-20 text-green-400 rounded-full text-sm mono-font">STEM</span> <span class="px-3 py-1 bg-green-400 bg-opacity-20 text-green-400 rounded-full text-sm mono-font">Education</span>
+      </div>
+      <div class="text-center mt-3 terminal-text font-bold mono-font">
+       +3,000 XP
+      </div>
+     </div>
+     <div class="achievement-card p-6 rounded-lg achievement-item">
+      <div class="text-center mb-4">
+       <div class="w-16 h-16 bg-green-400 rounded-lg flex items-center justify-center mx-auto mb-3">
+        <div class="w-8 h-8 bg-black rounded"></div>
+       </div>
+       <div class="level-indicator px-3 py-1 rounded-full text-sm font-bold mono-font text-black">
+        ACTIVE
+       </div>
+      </div>
+      <h3 class="text-xl font-bold terminal-text mb-2 text-center mono-font">BRAND IDENTITY</h3>
+      <p class="text-gray-300 mb-4 text-center">Complete branding for WhimsyLoops</p>
+      <div class="flex justify-center space-x-2"><span class="px-3 py-1 bg-green-400 bg-opacity-20 text-green-400 rounded-full text-sm mono-font">Branding</span> <span class="px-3 py-1 bg-green-400 bg-opacity-20 text-green-400 rounded-full text-sm mono-font">Business</span>
+      </div>
+      <div class="text-center mt-3 terminal-text font-bold mono-font">
+       +2,500 XP
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Contact Section -->
+  <section id="contact" class="py-20">
+   <div class="container mx-auto px-6">
+    <h2 class="text-5xl font-bold text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-300 neon-glow mono-font">CONTACT.SYS</h2>
+    <div class="max-w-4xl mx-auto">
+     <div class="grid md:grid-cols-2 gap-12">
+      <div class="space-y-8">
+       <div class="game-card p-6 rounded-lg">
+        <div class="flex items-center mb-4">
+         <div class="w-4 h-4 bg-green-400 rounded-full mr-3"></div>
+         <h3 class="text-2xl font-bold terminal-text mono-font">CHANNELS</h3>
+        </div>
+        <div class="space-y-4">
+         <div class="flex items-center space-x-4 p-3 bg-gray-900 rounded-lg border border-green-500">
+          <div class="w-8 h-8 bg-green-400 rounded-lg flex items-center justify-center">
+           <div class="w-4 h-4 bg-black rounded"></div>
+          </div>
+          <div>
+           <div class="terminal-text font-bold mono-font">
+            EMAIL
+           </div>
+           <div class="text-gray-300 mono-font text-sm">
+            hur1ya1rfanwork@gmail.com
+           </div>
+          </div>
+         </div>
+         <div class="flex items-center space-x-4 p-3 bg-gray-900 rounded-lg border border-green-500">
+          <div class="w-8 h-8 bg-green-400 rounded-lg flex items-center justify-center">
+           <div class="w-4 h-4 bg-black rounded"></div>
+          </div>
+          <div>
+           <div class="terminal-text font-bold mono-font">
+            PHONE
+           </div>
+           <div class="text-gray-300 mono-font text-sm">
+            +92 3101078428
+           </div>
+          </div>
+         </div>
+         <div class="flex items-center space-x-4 p-3 bg-gray-900 rounded-lg border border-green-500">
+          <div class="w-8 h-8 bg-green-400 rounded-lg flex items-center justify-center">
+           <div class="w-4 h-4 bg-black rounded"></div>
+          </div>
+          <div>
+           <div class="terminal-text font-bold mono-font">
+            LINKEDIN
+           </div>
+           <div class="text-gray-300 mono-font text-sm">
+            linkedin.com/in/huriyairfan
+           </div>
+          </div>
+         </div>
+         <div class="flex items-center space-x-4 p-3 bg-gray-900 rounded-lg border border-green-500">
+          <div class="w-8 h-8 bg-green-400 rounded-lg flex items-center justify-center">
+           <div class="w-4 h-4 bg-black rounded"></div>
+          </div>
+          <div>
+           <div class="terminal-text font-bold mono-font">
+            GITHUB
+           </div>
+           <div class="text-gray-300 mono-font text-sm">
+            github.com/bedobeeeee
+           </div>
+          </div>
+         </div>
+         <div class="flex items-center space-x-4 p-3 bg-gray-900 rounded-lg border border-green-500">
+          <div class="w-8 h-8 bg-green-400 rounded-lg flex items-center justify-center">
+           <div class="w-4 h-4 bg-black rounded"></div>
+          </div>
+          <div>
+           <div class="terminal-text font-bold mono-font">
+            LOCATION
+           </div>
+           <div class="text-gray-300 mono-font text-sm">
+            Karachi, Pakistan
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="game-card p-6 rounded-lg">
+       <div class="flex items-center mb-6">
+        <div class="w-4 h-4 bg-green-400 rounded-full mr-3"></div>
+        <h3 class="text-2xl font-bold terminal-text mono-font">MESSAGE</h3>
+       </div>
+       <form class="space-y-4" id="contact-form">
+        <div><label class="block terminal-text mb-2 font-bold mono-font">NAME</label> <input type="text" placeholder="Enter your name..." class="w-full bg-black border border-green-500 rounded-lg px-4 py-3 text-white focus:border-green-400 focus:outline-none transition-colors mono-font">
+        </div>
+        <div><label class="block terminal-text mb-2 font-bold mono-font">EMAIL</label> <input type="email" placeholder="your.email@domain.com" class="w-full bg-black border border-green-500 rounded-lg px-4 py-3 text-white focus:border-green-400 focus:outline-none transition-colors mono-font">
+        </div>
+        <div><label class="block terminal-text mb-2 font-bold mono-font">MESSAGE</label> <textarea placeholder="Type your message here..." rows="4" class="w-full bg-black border border-green-500 rounded-lg px-4 py-3 text-white focus:border-green-400 focus:outline-none transition-colors resize-none mono-font"></textarea>
+        </div><button type="submit" class="w-full game-button text-black font-bold py-3 rounded-lg text-lg mono-font"> SEND MESSAGE </button>
+       </form>
+       <div class="mt-4 text-center text-gray-400 text-sm mono-font">
+        Demo Mode - Messages are simulated
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Footer -->
+  <footer class="py-8 border-t border-green-500">
+   <div class="container mx-auto px-6 text-center">
+    <div class="text-gray-400 mb-2 mono-font">
+     © 2025 HURIYA IRFAN - Level 15 Developer
+    </div>
+    <div class="text-sm terminal-text mono-font">
+     System Status: Online | Build: v2.0.1
+    </div>
+   </div>
+  </footer>
+  <script>
         // Matrix background effect
         const canvas = document.getElementById('matrix');
         const ctx = canvas.getContext('2d');
@@ -990,5 +1042,5 @@
         // Initialize
         updateHUD();
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'962ba5d043da21e8',t:'MTc1MzExMDg2NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9cb9e640022121f0',t:'MTc3MDcwODYwOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
